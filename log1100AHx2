@@ -1,0 +1,59 @@
+
+
+RouterBOOT booter 3.24
+
+RouterBoard 1100AHx2
+
+CPU frequency: 1066 MHz
+  Memory size: 2048 MiB
+    NAND size: 128 MiB
+
+Press any key within 2 seconds to enter setup..
+
+loading kernel from nand... OK
+setting up elf image... OK
+jumping to kernel code
+Starting...
+ln: /rw/run/netns: No space left on device
+/etc/rc.d/run.d/S01init: 11: cannot create /var/run/netns/main: Directory nonexi                                                                                        stent
+Power down.
+System Halted, OK to turn off power
+BUG: soft lockup - CPU#0 stuck for 22s! [init:83]
+Kernel panic - not syncing: softlockup: hung tasks
+Rebooting in 1 seconds..
+------------[ cut here ]------------
+Kernel BUG at 800a6bac [verbose debug info unavailable]
+Oops: Exception in kernel mode, sig: 5 [#1]
+SMP NR_CPUS=2 RB1120
+NIP: 800a6bac LR: 80011f58 CTR: 00000000
+REGS: decf5aa0 TRAP: 0700   Not tainted  (3.3.5-smp)
+MSR: 00021000 <CE,ME>  CR: 22000024  XER: 20000000
+TASK = df86e760[83] 'init' THREAD: decf4000 CPU: 0
+GPR00: 80011f58 decf5b50 df86e760 00001000 00000001 00000001 e1000000 edffc000
+GPR08: 000000d0 80018194 00010000 00000000 22000024 1004a3b8 811f6440 7fffffff
+GPR16: 3b9ac9ff 00000231 00000003 00000001 ffffffff 7fffffff decf5d50 803a0000
+GPR24: 80018194 803a0000 e1000000 edffc000 000000d0 00000001 00000001 80018194
+NIP [800a6bac] __get_vm_area_node.isra.31+0x34/0x150
+LR [80011f58] __ioremap_caller+0x170/0x1a4
+Call Trace:
+[decf5b50] [00000001] 0x1 (unreliable)
+[decf5b80] [80011f58] __ioremap_caller+0x170/0x1a4
+[decf5bb0] [80018194] rb1120_restart+0x64/0xa8
+[decf5bd0] [8000b8d4] machine_restart+0x48/0x60
+[decf5bf0] [802c1208] panic+0x188/0x1d8
+[decf5c40] [800735c0] watchdog_enable.part.3+0x0/0xb4
+[decf5c80] [8004ee98] __run_hrtimer.isra.31+0x54/0xd8
+[decf5ca0] [8004f7ec] hrtimer_interrupt+0x134/0x3d4
+[decf5d10] [80008e68] timer_interrupt+0xfc/0x128
+[decf5d40] [8000dcb0] ret_from_except+0x0/0x18
+--- Exception: 901 at rb_power_off+0x18/0x1c
+    LR = rb_power_off+0x18/0x1c
+[decf5e10] [8000b224] machine_power_off+0x40/0x58
+[decf5e20] [8003f554] sys_reboot+0x108/0x1d8
+[decf5f40] [8000d66c] ret_from_syscall+0x0/0x3c
+--- Exception: c01 at 0x10021198
+    LR = 0x10003108
+Instruction dump:
+9421ffd0 bf010010 542a0024 90010034 7c9d2378 7cbe2b78 7cda3378 814a000c
+7cfb3b78 7d1c4378 7d384b78 554a016e <0f0a0000> 70a90001 41820018 7c690034
+---[ end trace 1b7540be3f915762 ]---
